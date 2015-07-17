@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 	<meta charset="UTF-8">
-	<title>ArayTek ERP</title>
+	<title>Components - ArayTek ERP</title>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
@@ -65,10 +65,7 @@
 	<script src="//cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.js"></script>
 	<script>
 		$('table').DataTable({
-			responsive:  true,
-			'language': {
-				'url': 'misc/zh_TW.json'
-			}
+			responsive:  true
 		});
 	</script>
 </body>

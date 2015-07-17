@@ -21,7 +21,7 @@ class ComponentController extends Controller
                             -> leftJoin('manufacturer', 'component.maid', '=', 'manufacturer.maid')
                             -> leftJoin('supplier', 'component.suid', '=', 'supplier.suid')
                             -> get();
-        return view('index', ['components' => $components]);
+        return view('component', ['components' => $components]);
     }
 
     /**

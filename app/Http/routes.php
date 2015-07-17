@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::get('/components', 'ComponentController@index');
+
+Route::get('/models', 'ModelController@index');
+
+Route::get('/models/{codename}', 'ModelController@show');
