@@ -28,6 +28,13 @@
 				</div>
 			</h1>
 			{!! $info or '' !!}
+			<form action="#" class="form-inline form-calc" style="display: none">
+				<div class="form-group">
+					<label for="model-amount">計算機︰</label>
+					<input type="text" class="form-control" id="model-amount" placeholder="賣多少？">
+					<span></span>
+				</div>
+			</form>
 			<p>&nbsp;</p>
 			<div class="col-md-12 col-lg-12">
 				<table class="table table-bordered display responsive no-wrap">
@@ -78,7 +85,8 @@
 		}
 
 		$(function() {
-			var dropdown_text = '';
+			var dropdown_text = '',
+				cost = {{$cost or 0}};
 			if (window.location.pathname.split('/').last() === 'models') {
 				dropdown_text = '所有機型 <span class="caret"></span>';
 			} else {
@@ -88,6 +96,18 @@
 			$('table').dataTable({
 				responsive:  true
 			}).makeEditable();
+
+			if (cost > 0) {
+				$('.form-calc').show();
+				$('#model-amount').on('keyup', function(e) {
+					if ($(this).val() === '') {
+						$(this).next().html('');
+					}
+					if (!isNaN(parseInt($(this).val()))) {
+						$(this).next().html('成本約 $' + Math.round(parseInt($(this).val()) * cost));
+					}
+				});
+			}
 		});
 
 	</script>

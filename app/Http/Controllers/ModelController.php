@@ -85,7 +85,7 @@ class ModelController extends Controller
 		}
 		$cost = ($usd * 31.0) + $ntd + ($rmb * 5.1);
 		$info = '<p>硬體花費 NTD ' . strval($cost) . '，看來還可以再cost down呢</p>';
-		return view('models', ['models' => $models, 'components' => $components, 'info' => $info]);
+		return view('models', ['models' => $models, 'components' => $components, 'cost' => $cost, 'info' => $info]);
 	}
 
 	/**
