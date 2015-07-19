@@ -87,12 +87,14 @@
 		$(function() {
 			var dropdown_text = '',
 				cost = {{$cost or 0}};
+
 			if (window.location.pathname.split('/').last() === 'models') {
 				dropdown_text = '所有機型 <span class="caret"></span>';
 			} else {
 				dropdown_text = window.location.pathname.split('/').last() + ' <span class="caret"></span>';
 			}
 			$('.dropdown-toggle').html(dropdown_text);
+
 			$('table').dataTable({
 				responsive:  true
 			}).makeEditable();
