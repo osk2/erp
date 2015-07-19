@@ -22,6 +22,7 @@ class ComponentController extends Controller
                             -> leftJoin('supplier', 'component.suid', '=', 'supplier.suid')
                             -> where('component.is_deleted', '<>', 1)
                             -> get();
+        
         return view('components', ['components' => $components]);
     }
 
@@ -97,7 +98,7 @@ class ComponentController extends Controller
     }
 
     /**
-     * Un-remove the specified resource from storage.
+     * Undo removing the specified resource from storage.
      *
      * @param  int  $cid
      * @return Response

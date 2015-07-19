@@ -26,22 +26,22 @@
 							<th>元件名稱</th>
 							<th>元件分類</th>
 							<th>元件製程</th>
-							<th>元件規格</th>
+							<th data-class-name="priority">元件規格</th>
 							<th>製造商</th>
-							<th>製造商料號</th>
+							<th data-class-name="priority">製造商料號</th>
 							<th>供應商</th>
 							<th>供應商聯絡人</th>
 							<th>供應商聯絡人Email</th>
 							<th>M.O.Q.</th>
 							<th>交期</th>
-							<th>剩餘數量</th>
+							<th data-class-name="priority">剩餘數量</th>
 							<th>價格</th>
 							<th>操作</th>
 						</tr>
 					</thead>
 					<tbody>
 					@foreach ($components as $component)
-						<tr>
+						<tr data-cid="{{$component -> cid}}">
 							<td>{{$component -> cid}}</td>
 							<td>{{$component -> component_name}}</td>
 							<td>{{$component -> component_category}}</td>
@@ -65,7 +65,7 @@
 					</tbody>
 				</table>
 				<div class="alert alert-success alert-deleted" style="display: none">
-					項目已刪除。&nbsp;<a href="#" class="btn-recovery" data-cid="0">按錯了，我要還原</a>
+					項目已刪除。&nbsp;<a href="#" class="btn-recovery" data-cid="0">按錯了快還原</a>
 				</div>
 				<p>&nbsp;</p>
 			</div>
@@ -80,7 +80,7 @@
 
 	$(function() {
 
-		$('table').dataTable({
+		var table = $('table').DataTable({
 			responsive:  true
 		});
 
@@ -99,6 +99,8 @@
 				success: function(data) {
 					$('.btn-recovery').attr('data-cid', cid);
 					$('.alert-deleted').attr('data-cid', cid).show(100).delay(5000).hide(100);
+					table.row($('tr[data-cid="' + cid + '"]')).child.hide(200);
+					$('tr[data-cid="' + cid + '"]').hide(200);
 				},
 				error: function() {
 					console.log('Deleting failed');
@@ -113,10 +115,12 @@
 			if (parseInt(cid) > 0) {
 
 				$.ajax({
-					url: 'api/components/' + cid + '/recovery',
+					url: 'api/components/recovery/' + cid,
 					type: 'PUT',
 					success: function(data) {
-						// document.location.href = './components';
+						table.row($('tr[data-cid="' + cid + '"]')).child.show(200);
+						$('tr[data-cid="' + cid + '"]').show(200);
+						$('.btn-recovery').attr('data-cid', '0');
 					},
 					error: function() {
 						console.log('Recovery failed');

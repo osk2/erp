@@ -6,7 +6,7 @@ Araytek ERP is a project powerd by Laravel 5.1
 
 ### Setting up project
 
-First, change to project root and let composer install project by issuing following command in terminal:
+First, change to root of project and let composer install project by issuing following command in terminal:
 
 ```
 composer install
