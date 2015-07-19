@@ -20,8 +20,9 @@ class ComponentController extends Controller
         $components = DB::table('component') 
                             -> leftJoin('manufacturer', 'component.maid', '=', 'manufacturer.maid')
                             -> leftJoin('supplier', 'component.suid', '=', 'supplier.suid')
+                            -> where('component.is_deleted', '<>', 1)
                             -> get();
-        return view('component', ['components' => $components]);
+        return view('components', ['components' => $components]);
     }
 
     /**
@@ -71,10 +72,11 @@ class ComponentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  Request  $request
-     * @param  int  $id
+     * @param  string  $id
+     * @param  string  $column
      * @return Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $column)
     {
         //
     }
@@ -82,11 +84,30 @@ class ComponentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $cid
      * @return Response
      */
-    public function destroy($id)
+    public function destroy($cid)
     {
-        //
+        DB::table('component')
+            -> where('cid', $cid)
+            -> update(['is_deleted' => 1]);
+
+        return response() -> json(['result' => 'ok']);
+    }
+
+    /**
+     * Un-remove the specified resource from storage.
+     *
+     * @param  int  $cid
+     * @return Response
+     */
+    public function undestroy($cid)
+    {
+        DB::table('component')
+            -> where('cid', $cid)
+            -> update(['is_deleted' => 0]);
+
+        return response() -> json(['result' => 'ok']);
     }
 }

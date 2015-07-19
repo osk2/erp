@@ -75,8 +75,6 @@
 	<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
 	<script src="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 	<script src="//cdn.datatables.net/responsive/1.0.6/js/dataTables.responsive.js"></script>
-	<script src="{{url('./js')}}/jquery.dataTables.editable.js"></script>
-	<script src="{{url('./js')}}/jquery.jeditable.js"></script>
 	<script>
 		if (!Array.prototype.last) {
 			Array.prototype.last = function() {

@@ -20,3 +20,13 @@ Route::get('/components', 'ComponentController@index');
 Route::get('/models', 'ModelController@index');
 
 Route::get('/models/{codename}', 'ModelController@show');
+
+Route::group(['prefix' => 'api'], function() {
+	//Group up URI with prefix 'api', e.g.: api/components/5/moq
+
+	Route::put('components/{cid}/{column}', 'ComponentController@update');
+
+	Route::delete('components/{cid}/', 'ComponentController@destroy');
+	
+	Route::put('components/{cid}/recovery', 'ComponentController@undestroy');
+});
