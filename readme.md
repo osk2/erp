@@ -1,5 +1,6 @@
 ## Araytek ERP System
-Araytek ERP is the system powerd by Laravel 5.1.
+
+Araytek ERP is a project powerd by Laravel 5.1
 
 ----------
 
@@ -11,17 +12,23 @@ First, change to project root and let composer install project by issuing follow
 composer install
 ```
 
+----------
+
 Then issuing following command to update package information and recompile:
 
 ```
 composer update
 ```
 
+----------
+
 Wait until composer process completed, and copy database into `/storage/app` since it's been ignore by git.
 
 Note that if database isn't `database.sqlite`, rename it or modify path of database which locate at `/config/database.php`
 
 ```
+#!php
+
      'connections' => [
 
         'sqlite' => [
@@ -32,16 +39,25 @@ Note that if database isn't `database.sqlite`, rename it or modify path of datab
         ...
 ```
 
-`.env` configuration has been ignore because this `README` assume the system will only be used in private network or somewhere safe, if not, then you should al least set `APP_KEY` in `.env`, take a look into `.env.example` for more detailed information.
+----------
 
-Finally, we are good to go : )
+Since `.env` has been ignore by git by default, we should at least set `APP_KEY` in `.env` manually like following configuration:
+```
+APP_DEBUG=true
+APP_KEY=c9bQB2WLj5j2OhhvuWoFAbKZCWs8DiCz
+```
+For more detail, take a look at [Laravel Documentation](http://laravel.com/docs/5.1/installation#environment-configuration).
+
+----------
+
+Don't forget to point entrance to `/public`, and we are finally good to go : )
 
 ----------
 
 ### License
 
-Copyright © 2015 `Araytek`.
+Copyright © 2015 [`Araytek`](http://www.araytek.net).
 
 ----------
 ### Author
-Made by `osk2` without <3
+Made by [`osk2`](http://osk2.me) without <3

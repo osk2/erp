@@ -35,14 +35,14 @@
 			<h1>Araytek ERP</h1>
 			<p>&nbsp;</p>
 			<h3>選擇入口</h3>
-			<a href="./models" class="function-block">
+			<a href="{{url('./models')}}" class="function-block">
 				<div class="col-md-3 bg-primary front-block">
 					<h2>
 						Models
 					</h2>
 				</div>
 			</a>
-			<a href="./components" class="function-block">
+			<a href="{{url('./components')}}" class="function-block">
 				<div class="block-wrapper">
 					<div class="col-md-3 col-md-offset-1 bg-primary front-block">
 						<h2>Components</h2>
