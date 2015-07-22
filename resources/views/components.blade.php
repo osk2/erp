@@ -57,7 +57,7 @@
 							<td>{{$component -> balance}}</td>
 							<td>{{$component -> currency}} {{$component -> unit_price}}</td>
 							<td>
-								<button class="btn btn-primary btn-edit-row" data-cid="{{$component -> cid}}">編輯</button>
+								<button class="btn btn-primary btn-edit-row" data-cid="{{$component -> cid}}"  data-toggle="modal" data-target="#editModal">編輯</button>
 								<button class="btn btn-danger btn-delete-row" data-cid="{{$component -> cid}}">刪除</button>
 							</td>
 						</tr>
@@ -71,6 +71,82 @@
 			</div>
 		</div>
 	</div>
+	<div class="modal fade" id="editModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4>編輯元件</h4>
+				</div>
+				<div class="modal-body">
+					<form action="#">
+						<input type="hidden" class="editor-input" data-col="cid">
+						<input type="hidden" class="editor-input" data-col="maid">
+						<input type="hidden" class="editor-input" data-col="suid">
+						<div class="form-group">
+							<label for="">元件名稱</label>
+							<input type="text" class="form-control editor-input" data-col="component_name">
+						</div>
+						<div class="form-group">
+							<label for="">元件分類</label>
+							<input type="text" class="form-control editor-input" data-col="component_category">
+						</div>
+						<div class="form-group">
+							<label for="">元件製程</label>
+							<input type="text" class="form-control editor-input" data-col="component_process_type">
+						</div>
+						<div class="form-group">
+							<label for="">元件規格</label>
+							<input type="text" class="form-control editor-input" data-col="component_specification">
+						</div>
+						<div class="form-group">
+							<label for="">製造商</label>
+							<input type="text" class="form-control editor-input" data-col="manufacturer_name">
+						</div>
+						<div class="form-group">
+							<label for="">製造商料號</label>
+							<input type="text" class="form-control editor-input" data-col="manufacturer_part_number">
+						</div>
+						<div class="form-group">
+							<label for="">供應商</label>
+							<input type="text" class="form-control editor-input" data-col="supplier_name">
+						</div>
+						<div class="form-group">
+							<label for="">供應商聯絡人</label>
+							<input type="text" class="form-control editor-input" data-col="supplier_contact">
+						</div>
+						<div class="form-group">
+							<label for="">供應商聯絡人Email</label>
+							<input type="text" class="form-control editor-input" data-col="supplier_contact_email">
+						</div>
+						<div class="form-group">
+							<label for="">M.O.Q.</label>
+							<input type="text" class="form-control editor-input" data-col="moq">
+						</div>
+						<div class="form-group">
+							<label for="">交期（週）</label>
+							<input type="text" class="form-control editor-input" data-col="delivery_time">
+						</div>
+						<div class="form-group">
+							<label for="">剩餘數量</label>
+							<input type="text" class="form-control editor-input" data-col="balance">
+						</div>
+						<div class="form-group">
+							<label for="">價格</label>
+							<input type="text" class="form-control editor-input" data-col="unit_price">
+						</div>
+						
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-primary">完成</button>
+					<button class="btn" data-dismiss="modal" aria-label="Close">取消</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
@@ -80,7 +156,10 @@
 
 	$(function() {
 
-		var table = $('table').DataTable({
+		var table,
+			alertTimer;
+
+		table = $('table').DataTable({
 			responsive:  true
 		});
 
@@ -98,7 +177,11 @@
 				type: 'DELETE',
 				success: function(data) {
 					$('.btn-recovery').attr('data-cid', cid);
-					$('.alert-deleted').attr('data-cid', cid).show(100).delay(5000).hide(100);
+					$('.alert-deleted').attr('data-cid', cid).show(100);
+					alertTimer = setTimeout(function() {
+						$('.alert-deleted').hide(100);
+					}, 8000);
+
 					table.row($('tr[data-cid="' + cid + '"]')).child.hide(200);
 					$('tr[data-cid="' + cid + '"]').hide(200);
 				},
@@ -121,6 +204,9 @@
 						table.row($('tr[data-cid="' + cid + '"]')).child.show(200);
 						$('tr[data-cid="' + cid + '"]').show(200);
 						$('.btn-recovery').attr('data-cid', '0');
+
+						clearTimeout(alertTimer);
+						$('.alert-deleted').hide(100);
 					},
 					error: function() {
 						console.log('Recovery failed');
@@ -129,6 +215,22 @@
 				
 			}
 			e.preventDefault();
+		});
+
+		$('#editModal').on('show.bs.modal', function(e) {
+			var button = $(e.relatedTarget),
+				cid = button.data('cid');
+
+			$.ajax({
+				url: 'api/components/' + cid,
+				type: 'GET',
+				dataType: 'JSON',
+				success: function(data) {
+					for(var col in data[0]) {
+						$('.editor-input[data-col="' + col + '"]').val(data[0][col]);
+					}
+				}
+			});
 		});
 
 	});

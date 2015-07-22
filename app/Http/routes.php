@@ -36,6 +36,6 @@ Route::group(['prefix' => 'api'], function() {
 
 	Route::delete('components/{cid}/', 'ComponentController@destroy');
 
-	// RESTful controllers
-	// Route::controller('components', 'ComponentController');
+	Route::get('components/{cid}', 'ComponentController@show');
+
 });
