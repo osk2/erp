@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::get('/components', 'ComponentController@index');
 
+Route::get('/components/deleted', 'ComponentController@deleted');
+
 Route::get('/models', 'ModelController@index');
 
 Route::get('/models/{codename}', 'ModelController@show');

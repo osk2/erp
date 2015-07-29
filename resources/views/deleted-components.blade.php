@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="csrf-token" content="{{csrf_token()}}">
-	<title>元件總覽 - ArayTek ERP</title>
+	<title>元件回收桶 - ArayTek ERP</title>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" href="//cdn.datatables.net/plug-ins/1.10.7/integration/bootstrap/3/dataTables.bootstrap.css">
@@ -14,10 +14,10 @@
 		<div class="row">
 			<div class="col-md-12 col-lg-12">
 				<p>&nbsp;</p>
-				<h1>元件總覽 <small>該有的都有了</small></h1>
+				<h1>元件回收桶 <small>該刪的都刪了</small></h1>
 				<p>&nbsp;</p>
 				<div class="alert alert-success alert-deleted" style="display: none">
-					項目已刪除。&nbsp;<a href="#" class="btn-recovery" data-cid="0">按錯了，我要還原</a>
+					項目已還原。&nbsp;<a href="#" class="btn-delete" data-cid="0">按錯了，快刪除</a>
 				</div>
 				<table class="table table-bordered display responsive no-wrap">
 					<thead>
@@ -57,93 +57,16 @@
 							<td>{{$component -> balance}}</td>
 							<td>{{$component -> currency}} {{$component -> unit_price}}</td>
 							<td>
-								<button class="btn btn-primary btn-edit-row" data-cid="{{$component -> cid}}"  data-toggle="modal" data-target="#editModal">編輯</button>
-								<button class="btn btn-danger btn-delete-row" data-cid="{{$component -> cid}}">刪除</button>
+								<button class="btn btn-danger btn-recovery-row" data-cid="{{$component -> cid}}">還原</button>
 							</td>
 						</tr>
 					@endforeach
 					</tbody>
 				</table>
 				<div class="alert alert-success alert-deleted" style="display: none">
-					項目已刪除。&nbsp;<a href="#" class="btn-recovery" data-cid="0">按錯了快還原</a>
+					項目已還原。&nbsp;<a href="#" class="btn-delete" data-cid="0">按錯了，快刪除</a>
 				</div>
 				<p>&nbsp;</p>
-			</div>
-		</div>
-	</div>
-	<div class="modal fade" id="editModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4>編輯元件</h4>
-				</div>
-				<div class="modal-body">
-					<form action="#">
-						<input type="hidden" class="editor-input" data-col="cid">
-						<input type="hidden" class="editor-input" data-col="maid">
-						<input type="hidden" class="editor-input" data-col="suid">
-						<div class="form-group">
-							<label for="">元件名稱</label>
-							<input type="text" class="form-control editor-input" data-col="component_name">
-						</div>
-						<div class="form-group">
-							<label for="">元件分類</label>
-							<input type="text" class="form-control editor-input" data-col="component_category">
-						</div>
-						<div class="form-group">
-							<label for="">元件製程</label>
-							<input type="text" class="form-control editor-input" data-col="component_process_type">
-						</div>
-						<div class="form-group">
-							<label for="">元件規格</label>
-							<input type="text" class="form-control editor-input" data-col="component_specification">
-						</div>
-						<div class="form-group">
-							<label for="">製造商</label>
-							<input type="text" class="form-control editor-input" data-col="manufacturer_name">
-						</div>
-						<div class="form-group">
-							<label for="">製造商料號</label>
-							<input type="text" class="form-control editor-input" data-col="manufacturer_part_number">
-						</div>
-						<div class="form-group">
-							<label for="">供應商</label>
-							<input type="text" class="form-control editor-input" data-col="supplier_name">
-						</div>
-						<div class="form-group">
-							<label for="">供應商聯絡人</label>
-							<input type="text" class="form-control editor-input" data-col="supplier_contact">
-						</div>
-						<div class="form-group">
-							<label for="">供應商聯絡人Email</label>
-							<input type="text" class="form-control editor-input" data-col="supplier_contact_email">
-						</div>
-						<div class="form-group">
-							<label for="">M.O.Q.</label>
-							<input type="text" class="form-control editor-input" data-col="moq">
-						</div>
-						<div class="form-group">
-							<label for="">交期（週）</label>
-							<input type="text" class="form-control editor-input" data-col="delivery_time">
-						</div>
-						<div class="form-group">
-							<label for="">剩餘數量</label>
-							<input type="text" class="form-control editor-input" data-col="balance">
-						</div>
-						<div class="form-group">
-							<label for="">價格</label>
-							<input type="text" class="form-control editor-input" data-col="unit_price">
-						</div>
-						
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button class="btn btn-primary">完成</button>
-					<button class="btn" data-dismiss="modal" aria-label="Close">取消</button>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -169,7 +92,7 @@
 			}
 		});
 
-		$(document).on('click', '.btn-delete-row', function(e) {
+		$(document).on('click', '.btn-recovery-row', function(e) {
 			var cid = $(this).data('cid');
 
 			$.ajax({
@@ -192,7 +115,7 @@
 			e.preventDefault();
 		});
 
-		$(document).on('click', '.btn-recovery', function(e) {
+		$(document).on('click', '.btn-delete', function(e) {
 			var cid = $(this).attr('data-cid');
 
 			if (parseInt(cid) > 0) {

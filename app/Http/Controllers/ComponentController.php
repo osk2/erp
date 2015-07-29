@@ -26,6 +26,22 @@ class ComponentController extends Controller
 		return view('components', ['components' => $components]);
 	}
 
+    /**
+     * Display a listing of the deleted resource.
+     *
+     * @return Response
+     */
+    public function deleted()
+    {
+        $components = DB::table('component') 
+                            -> leftJoin('manufacturer', 'component.maid', '=', 'manufacturer.maid')
+                            -> leftJoin('supplier', 'component.suid', '=', 'supplier.suid')
+                            -> where('component.is_deleted', '=', 1)
+                            -> get();
+        
+        return view('deleted-components', ['components' => $components]);
+    }
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
