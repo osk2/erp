@@ -87,22 +87,21 @@ class ComponentController extends Controller
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request, $id)
 	{
-		//
+		return 'ok';
 	}
 
 	/**
 	 * Update the specified resource in storage.
 	 *
 	 * @param  Request  $request
-	 * @param  string  $id
-	 * @param  string  $column
+	 * @param  string  $cid
 	 * @return Response
 	 */
-	public function update(Request $request, $id, $column)
+	public function update(Request $request, $cid)
 	{
-		//
+		return 'ok';
 	}
 
 	/**

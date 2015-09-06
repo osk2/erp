@@ -14,7 +14,7 @@
 		<div class="row">
 			<div class="col-md-12 col-lg-12">
 				<p>&nbsp;</p>
-				<h1>元件回收桶 <small>該刪的都刪了</small></h1>
+				<h1>元件回收桶 <small>被刪的都在這了</small></h1>
 				<p>&nbsp;</p>
 				<div class="alert alert-success alert-deleted" style="display: none">
 					項目已還原。&nbsp;<a href="#" class="btn-delete" data-cid="0">按錯了，快刪除</a>

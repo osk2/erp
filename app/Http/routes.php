@@ -31,12 +31,12 @@ Route::group(['prefix' => 'api'], function() {
 	 */
 
 	// Resource controllers
-	Route::put('components/{cid}/{column}', 'ComponentController@update')
+	Route::put('components/{cid}', 'ComponentController@edit')
 			->where('cid', '/[0-9]+/g');
 
-	Route::put('components/recovery/{cid}', 'ComponentController@undestroy');
+	Route::put('components/{cid}/recovery', 'ComponentController@undestroy');
 
-	Route::delete('components/{cid}/', 'ComponentController@destroy');
+	Route::delete('components/{cid}', 'ComponentController@destroy');
 
 	Route::get('components/{cid}', 'ComponentController@show');
 

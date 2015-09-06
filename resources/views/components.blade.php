@@ -81,7 +81,7 @@
 					<h4>編輯元件</h4>
 				</div>
 				<div class="modal-body">
-					<form action="#">
+					<form action="#" name="update-form">
 						<input type="hidden" class="editor-input" data-col="cid">
 						<input type="hidden" class="editor-input" data-col="maid">
 						<input type="hidden" class="editor-input" data-col="suid">
@@ -141,7 +141,7 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-primary">完成</button>
+					<button class="btn btn-primary btn-update">更新</button>
 					<button class="btn" data-dismiss="modal" aria-label="Close">取消</button>
 				</div>
 			</div>
@@ -198,7 +198,7 @@
 			if (parseInt(cid) > 0) {
 
 				$.ajax({
-					url: 'api/components/recovery/' + cid,
+					url: 'api/components/' + cid + '/recovery',
 					type: 'PUT',
 					success: function(data) {
 						table.row($('tr[data-cid="' + cid + '"]')).child.show(200);
@@ -229,6 +229,20 @@
 					for(var col in data[0]) {
 						$('.editor-input[data-col="' + col + '"]').val(data[0][col]);
 					}
+					$('.btn-update').attr('data-cid', cid);
+				}
+			});
+		});
+
+		$('.btn-update').on('click', function(e) {
+			var cid = $(this).attr('data-cid');
+			$.ajax({
+				url: 'api/components/' + cid,
+				type: 'PUT',
+				data: $('form[name="update-form"]').serialize(),
+				dataType: 'JSON',
+				success: function(data) {
+					console.log(data);
 				}
 			});
 		});
