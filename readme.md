@@ -1,6 +1,6 @@
-## Araytek ERP System
+## Simple ERP System
 
-Araytek ERP is a project powerd by Laravel 5.1
+Simple ERP is a project powerd by Laravel 5.1
 
 ----------
 
@@ -22,7 +22,7 @@ composer update
 
 ----------
 
-Wait until composer process completed, and copy database into `/storage/app` since it's been ignore by git.
+Wait until composer process completed, and copy your database into `/storage/app` since it's been ignore by git.
 
 Note that if database isn't `database.sqlite`, rename it or modify path of database which locate at `/config/database.php`
 
@@ -41,7 +41,7 @@ Note that if database isn't `database.sqlite`, rename it or modify path of datab
 
 ----------
 
-Since `.env` has been ignore by git by default, cpoy `.env.example` as `.env`
+Since `.env` has been ignored by git by default, cpoy `.env.example` as `.env`
 
 then execute `php artisan key:generate` in terminal
 
@@ -50,12 +50,6 @@ For more detail, take a look at [Laravel Documentation](http://laravel.com/docs/
 ----------
 
 Don't forget to point entrance to `/public`, and we are finally good to go : )
-
-----------
-
-### License
-
-Copyright © 2015 [`Araytek`](http://www.araytek.net).
 
 ----------
 ### Author
