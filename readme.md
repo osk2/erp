@@ -41,11 +41,10 @@ Note that if database isn't `database.sqlite`, rename it or modify path of datab
 
 ----------
 
-Since `.env` has been ignore by git by default, we should at least set `APP_KEY` in `.env` manually like following configuration:
-```
-APP_DEBUG=true
-APP_KEY=c9bQB2WLj5j2OhhvuWoFAbKZCWs8DiCz
-```
+Since `.env` has been ignore by git by default, cpoy `.env.example` as `.env`
+
+then execute `php artisan key:generate` in terminal
+
 For more detail, take a look at [Laravel Documentation](http://laravel.com/docs/5.1/installation#environment-configuration).
 
 ----------
