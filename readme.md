@@ -27,8 +27,6 @@ Wait until composer process completed, and copy your database into `/storage/app
 Note that if database isn't `database.sqlite`, rename it or modify path of database which locate at `/config/database.php`
 
 ```php
-
-
      'connections' => [
 
         'sqlite' => [
