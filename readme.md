@@ -1,5 +1,7 @@
 ## Simple ERP System
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/osk2/erp.svg)](https://greenkeeper.io/)
+
 Simple ERP is a project powerd by Laravel 5.1
 
 ----------
