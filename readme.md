@@ -2,13 +2,10 @@
 
 Simple ERP is a project powerd by Laravel 5.1
 
-----------
+## THIS PROJECT IS NO LONGER MAINTAINED
+> Due to lack of passion, this project is no longer maintained
+> If someone want to contribute, PRs are welcome however
 
-## `THIS PROJECT IS NO LONGER MAINTAINED`
-### Due to lack of passion, this project is no longer maintained
-### If someone want to contribute, PRs are welcome however
-
-----------
 
 ### Setting up project
 
@@ -50,3 +47,8 @@ Don't forget to point entrance to `/public`, and we are finally good to go : )
 ----------
 ### Author
 Made by [`osk2`](http://osk2.me) without <3
+
+
+### License
+
+This project is licensed under [WTFPL](LICENSE), just do whatever you want.
